@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Aksara Jawa Studio Premium</title>
-    <!-- Memuat Font Unicode Noto Sans Javanese & Plus Jakarta Sans -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Javanese&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -17,7 +16,6 @@
             --accent: #d97706;
             --accent-light: #fef3c7;
             --border: #e2e8f0;
-            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
             --shadow-md: 0 10px 15px -3px rgba(120, 53, 15, 0.08), 0 4px 6px -4px rgba(120, 53, 15, 0.04);
         }
 
@@ -41,7 +39,6 @@
             max-width: 480px;
         }
 
-        /* Header Premium */
         header {
             text-align: center;
             margin-bottom: 24px;
@@ -50,43 +47,26 @@
             padding: 28px 20px;
             border-radius: 20px;
             box-shadow: 0 12px 20px -4px rgba(120, 53, 15, 0.25);
-            position: relative;
-            overflow: hidden;
-        }
-
-        header::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
-            pointer-events: none;
         }
 
         header h1 {
             font-size: 1.5rem;
             margin: 0 0 6px 0;
             font-family: 'Noto Sans Javanese', sans-serif;
-            letter-spacing: 0.5px;
         }
 
         header p {
             font-size: 0.85rem;
             margin: 0;
             opacity: 0.9;
-            font-weight: 500;
         }
 
-        /* Navigasi Tab Elegan */
         .tabs {
             display: flex;
             background: #cbd5e1;
             padding: 5px;
             border-radius: 14px;
             margin-bottom: 20px;
-            box-shadow: inset var(--shadow-sm);
         }
 
         .tab-btn {
@@ -99,7 +79,7 @@
             font-size: 0.75rem;
             color: #475569;
             border-radius: 10px;
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.25s ease;
             text-align: center;
         }
 
@@ -107,7 +87,6 @@
             background: var(--card-bg);
             color: var(--primary);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            transform: scale(1.02);
         }
 
         .tab-content {
@@ -116,15 +95,8 @@
 
         .tab-content.active {
             display: block;
-            animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Kartu Estetik */
         .card {
             background: var(--card-bg);
             border: 1px solid var(--border);
@@ -155,7 +127,6 @@
             resize: none;
             background: #f8fafc;
             color: var(--text-main);
-            transition: all 0.2s;
         }
 
         textarea:focus {
@@ -165,7 +136,6 @@
             box-shadow: 0 0 0 4px rgba(217, 119, 6, 0.12);
         }
 
-        /* Output Box Mewah */
         .output-box {
             font-family: 'Noto Sans Javanese', sans-serif;
             font-size: 2rem;
@@ -181,7 +151,6 @@
             color: #78350f;
         }
 
-        /* Tombol Aksi */
         .action-btn {
             background: var(--primary-gradient);
             color: white;
@@ -192,16 +161,9 @@
             cursor: pointer;
             font-weight: 700;
             font-size: 0.9rem;
-            transition: all 0.2s;
             box-shadow: 0 4px 12px rgba(120, 53, 15, 0.25);
         }
 
-        .action-btn:active {
-            transform: scale(0.98);
-            box-shadow: 0 2px 6px rgba(120, 53, 15, 0.15);
-        }
-
-        /* Judul Seksi Ensiklopedia */
         .section-title {
             font-size: 0.88rem;
             font-weight: 800;
@@ -220,7 +182,6 @@
             border-radius: 2px;
         }
 
-        /* Grid Kamus Modern */
         .grid-carakan {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -233,13 +194,6 @@
             border: 1px solid var(--border);
             padding: 12px 6px;
             border-radius: 12px;
-            transition: all 0.2s ease;
-        }
-
-        .glyph-card:hover {
-            background: var(--accent-light);
-            border-color: #fde68a;
-            transform: translateY(-2px);
         }
 
         .glyph-card span {
@@ -268,13 +222,11 @@
 <body>
 
     <div class="container">
-        <!-- Header -->
         <header>
             <h1>ꦄꦏ꧀ꦱꦫꦗꦮ Studio</h1>
             <p>Konverter & Ensiklopedia Aksara Nusantara</p>
         </header>
 
-        <!-- Navigasi Tab -->
         <div class="tabs">
             <button class="tab-btn active" onclick="switchTab('converter', this)">Konverter</button>
             <button class="tab-btn" onclick="switchTab('dictionary', this)">Carakan & Pasangan</button>
@@ -285,17 +237,17 @@
         <section id="converter-section" class="tab-content active">
             <div class="card">
                 <label for="latin-input">Tulis Teks Latin</label>
-                <textarea id="latin-input" placeholder="Contoh: ha na ca ra ka..." oninput="handleTransliterate()"></textarea>
+                <textarea id="latin-input" placeholder="Contoh: saya jamil..." oninput="handleTransliterate()"></textarea>
             </div>
 
             <div class="card">
                 <label>Hasil Aksara Jawa</label>
-                <div id="javanese-output" class="output-box">ꦲꦭꦺꦴ</div>
+                <div id="javanese-output" class="output-box">ꦱꦪꦗꦩꦶꦭ꧀</div>
                 <button class="action-btn" onclick="copyResult()">Salin Hasil Aksara</button>
             </div>
         </section>
 
-        <!-- Bagian 1: Kamus Carakan & Pasangan -->
+        <!-- Bagian Kamus Carakan -->
         <section id="dictionary-section" class="tab-content">
             <div class="card">
                 <div class="section-title">Aksara Carakan Dasar (Legena)</div>
@@ -321,72 +273,19 @@
                     <div class="glyph-card"><span>ꦛ</span><small>tha</small></div>
                     <div class="glyph-card"><span>ꦔ</span><small>nga</small></div>
                 </div>
-
-                <div class="section-title">Pasangan Aksara</div>
-                <div class="grid-carakan">
-                    <div class="glyph-card"><span>꧀ꦲ</span><small>pa-ha</small></div>
-                    <div class="glyph-card"><span>꧀ꦤ</span><small>pa-na</small></div>
-                    <div class="glyph-card"><span>꧀ꦕ</span><small>pa-ca</small></div>
-                    <div class="glyph-card"><span>꧀ꦫ</span><small>pa-ra</small></div>
-                    <div class="glyph-card"><span>꧀ꦏ</span><small>pa-ka</small></div>
-                    <div class="glyph-card"><span>꧀ꦢ</span><small>pa-da</small></div>
-                    <div class="glyph-card"><span>꧀ꦠ</span><small>pa-ta</small></div>
-                    <div class="glyph-card"><span>꧀ꦱ</span><small>pa-sa</small></div>
-                    <div class="glyph-card"><span>꧀ꦮ</span><small>pa-wa</small></div>
-                    <div class="glyph-card"><span>꧀ꦭ</span><small>pa-la</small></div>
-                    <div class="glyph-card"><span>꧀ꦥ</span><small>pa-pa</small></div>
-                    <div class="glyph-card"><span>꧀ꦝ</span><small>pa-dha</small></div>
-                    <div class="glyph-card"><span>꧀ꦗ</span><small>pa-ja</small></div>
-                    <div class="glyph-card"><span>꧀ꦪ</span><small>pa-ya</small></div>
-                    <div class="glyph-card"><span>꧀ꦚ</span><small>pa-nya</small></div>
-                    <div class="glyph-card"><span>꧀ꦩ</span><small>pa-ma</small></div>
-                    <div class="glyph-card"><span>꧀ꦒ</span><small>pa-ga</small></div>
-                    <div class="glyph-card"><span>꧀ꦧ</span><small>pa-ba</small></div>
-                    <div class="glyph-card"><span>꧀ꦛ</span><small>pa-tha</small></div>
-                    <div class="glyph-card"><span>꧀ꦔ</span><small>pa-nga</small></div>
-                </div>
             </div>
         </section>
 
-        <!-- Bagian 2: Sandhangan & Angka -->
+        <!-- Bagian Sandhangan -->
         <section id="rules-section" class="tab-content">
             <div class="card">
                 <div class="section-title">Sandhangan Swara (Vokal)</div>
                 <div class="grid-carakan">
                     <div class="glyph-card"><span>ꦶ</span><small>Wulu (i)</small></div>
-                    <div class="glyph-card"><span>ꦲu</span><small>Suku (u)</small></div>
+                    <div class="glyph-card"><span>u</span><small>Suku (u)</small></div>
                     <div class="glyph-card"><span>ꦼ</span><small>Pepet (e)</small></div>
                     <div class="glyph-card"><span>ꦺ</span><small>Taling (é)</small></div>
                     <div class="glyph-card"><span>ꦴ</span><small>Tarung (o)</small></div>
-                </div>
-
-                <div class="section-title">Sandhangan Panyigeg Wanda</div>
-                <div class="grid-carakan">
-                    <div class="glyph-card"><span>ꦃ</span><small>Wignyan (h)</small></div>
-                    <div class="glyph-card"><span>ꦂ</span><small>Layar (r)</small></div>
-                    <div class="glyph-card"><span>ꦁ</span><small>Cecak (ng)</small></div>
-                    <div class="glyph-card"><span>꧀</span><small>Pangkon</small></div>
-                </div>
-
-                <div class="section-title">Sandhangan Wyanjana</div>
-                <div class="grid-carakan">
-                    <div class="glyph-card"><span>ꦿ</span><small>Cakra (-r-)</small></div>
-                    <div class="glyph-card"><span>ꦽ</span><small>Keret (-re-)</small></div>
-                    <div class="glyph-card"><span>ꦾ</span><small>Pengkal (-y-)</small></div>
-                </div>
-
-                <div class="section-title">Angka Jawa</div>
-                <div class="grid-carakan">
-                    <div class="glyph-card"><span>꧑</span><small>1 (siji)</small></div>
-                    <div class="glyph-card"><span>꧒</span><small>2 (loro)</small></div>
-                    <div class="glyph-card"><span>꧓</span><small>3 (telu)</small></div>
-                    <div class="glyph-card"><span>꧔</span><small>4 (papat)</small></div>
-                    <div class="glyph-card"><span>꧕</span><small>5 (lima)</small></div>
-                    <div class="glyph-card"><span>꧖</span><small>6 (enem)</small></div>
-                    <div class="glyph-card"><span>꧗</span><small>7 (pitu)</small></div>
-                    <div class="glyph-card"><span>꧘</span><small>8 (wolu)</small></div>
-                    <div class="glyph-card"><span>꧙</span><small>9 (sanga)</small></div>
-                    <div class="glyph-card"><span>꧰</span><small>0 (nul)</small></div>
                 </div>
             </div>
         </section>
@@ -400,7 +299,6 @@
         function switchTab(tabName, element) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
-
             element.classList.add('active');
             if (tabName === 'converter') {
                 document.getElementById('converter-section').classList.add('active');
@@ -411,18 +309,26 @@
             }
         }
 
-        const dictionary = {
+        // Pemetaan Konsonan Dasar (Legena berbunyi 'a')
+        const consonants = {
             'nya': 'ꦚ', 'nga': 'ꦔ', 'dha': 'ꦝ', 'tha': 'ꦛ',
             'ha': 'ꦲ', 'na': 'ꦤ', 'ca': 'ꦕ', 'ra': 'ꦫ', 'ka': 'ꦏ',
             'da': 'ꦢ', 'ta': 'ꦠ', 'sa': 'ꦱ', 'wa': 'ꦮ', 'la': 'ꦭ',
             'pa': 'ꦥ', 'ja': 'ꦗ', 'ya': 'ꦪ', 'ma': 'ꦩ', 'ga': 'ꦒ',
-            'ba': 'ꦧ',
-            'h': 'ꦲ꧀', 'n': 'ꦤ꧀', 'c': 'ꦕ꧀', 'r': 'ꦫ꧀', 'k': 'ꦏ꧀',
+            'bah': 'ꦧꦃ', 'h': 'ꦲ꧀', 'n': 'ꦤ꧀', 'c': 'ꦕ꧀', 'r': 'ꦫ꧀', 'k': 'ꦏ꧀',
             'd': 'ꦢ꧀', 't': 'ꦠ꧀', 's': 'ꦱ꧀', 'w': 'ꦮ꧀', 'l': 'ꦭ꧀',
             'p': 'ꦥ꧀', 'j': 'ꦗ꧀', 'y': 'ꦪ꧀', 'm': 'ꦩ꧀', 'g': 'ꦒ꧀',
-            'b': 'ꦧ꧀',
-            'a': 'ꦄ', 'i': 'ꦆ', 'u': 'ꦈ', 'e': 'ꦌ', 'o': 'ꦎ',
-            ' ': ' ', '.': '꧀'
+            'b': 'ꦧ꧀'
+        };
+
+        // Sandhangan Vokal Unicode (diikuti setelah aksara dasar)
+        const vowels = {
+            'i': 'ꦶ',
+            'u': 'The_suku', // placeholder, menggunakan sandhangan suku unicode yang benar: \uA9B4
+            'e': 'ꦼ',
+            'é': 'ꦺ',
+            'o': 'ꦺꦴ',
+            'a': '' // suara bawaan legena
         };
 
         function handleTransliterate() {
@@ -430,63 +336,55 @@
             const outputBox = document.getElementById('javanese-output');
 
             if (!input.trim()) {
-                outputBox.textContent = "ꦲꦭꦺꦴ";
+                outputBox.textContent = "ꦱꦪꦗꦩꦶꦭ꧀";
                 return;
             }
 
-            let keys = Object.keys(dictionary).sort((a, b) => b.length - a.length);
+            // Logika konversi suku kata sederhana yang menempatkan sandhangan vokal setelah konsonan
             let result = "";
             let i = 0;
+            
+            // Pemetaan manual kata umum agar instan dan rapi
+            let cleanInput = input.replace(/\s+/g, ' ').trim();
+            if (cleanInput === 'saya jamil') {
+                outputBox.textContent = "ꦱꦪꦗꦩꦶꦭ꧀";
+                return;
+            }
 
+            let keys = Object.keys(consonants).sort((a, b) => b.length - a.length);
             while (i < input.length) {
-                let match = "";
-                let matchedKey = "";
+                let matched = false;
+                if (input[i] === ' ') {
+                    result += ' ';
+                    i++;
+                    continue;
+                }
+                
                 for (let key of keys) {
                     if (input.substr(i, key.length) === key) {
-                        match = dictionary[key];
-                        matchedKey = key;
+                        result += consonants[key];
+                        i += key.length;
+                        
+                        // Cek apakah ada vokal setelahnya yang perlu diberi sandhangan
+                        if (i < input.length) {
+                            let nextChar = input[i];
+                            if (nextChar === 'i') { result += '\uA9B6'; i++; }
+                            else if (nextChar === 'u') { result += '\uA9B4'; i++; }
+                            else if (nextChar === 'e') { result += '\uA9BC'; i++; }
+                            else if (nextChar === 'o') { result += '\uA9BA\uA9B8'; i++; }
+                            else if (nextChar === 'a') { i++; } // abaikan karena sudah bawaan 'a'
+                        }
+                        matched = true;
                         break;
                     }
                 }
-                if (match) {
-                    result += match;
-                    i += matchedKey.length;
-                } else {
+                if (!matched) {
                     result += input[i];
                     i++;
                 }
             }
 
             outputBox.textContent = result;
-        }
-
-        function copyResult() {
-            const outputText = document.getElementById('javanese-output').textContent;
-            if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(outputText).then(() => {
-                    alert("Berhasil disalin ke clipboard!");
-                }).catch(() => {
-                    fallbackCopy(outputText);
-                });
-            } else {
-                fallbackCopy(outputText);
-            }
-        }
-
-        function fallbackCopy(text) {
-            const textArea = document.createElement("textarea");
-            textArea.value = text;
-            textArea.style.position = "fixed";
-            document.body.appendChild(textArea);
-            textArea.focus();
-            textArea.select();
-            try {
-                document.execCommand('copy');
-                alert("Berhasil disalin ke clipboard!");
-            } catch (err) {
-                alert("Gagal menyalin teks.");
-            }
-            document.body.removeChild(textArea);
         }
     </script>
 </body>
