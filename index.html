@@ -3,20 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Aksara Jawa Studio Komplet</title>
+    <title>Aksara Jawa Studio Premium</title>
     <!-- Memuat Font Unicode Noto Sans Javanese & Plus Jakarta Sans -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Javanese&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Javanese&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #f8fafc;
+            --bg-color: #f1f5f9;
             --card-bg: #ffffff;
             --text-main: #0f172a;
             --text-muted: #64748b;
-            --primary: #854d0e;
-            --primary-light: #fef9c3;
-            --accent: #ca8a04;
+            --primary: #78350f;
+            --primary-gradient: linear-gradient(135deg, #78350f 0%, #b45309 100%);
+            --accent: #d97706;
+            --accent-light: #fef3c7;
             --border: #e2e8f0;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 10px 15px -3px rgba(120, 53, 15, 0.08), 0 4px 6px -4px rgba(120, 53, 15, 0.04);
         }
 
         * {
@@ -29,64 +31,83 @@
             background-color: var(--bg-color);
             color: var(--text-main);
             margin: 0;
-            padding: 20px 16px;
+            padding: 24px 16px;
             display: flex;
             justify-content: center;
         }
 
         .container {
             width: 100%;
-            max-width: 500px;
+            max-width: 480px;
         }
 
+        /* Header Premium */
         header {
             text-align: center;
             margin-bottom: 24px;
-            background: linear-gradient(135deg, #713f12, #a16207);
+            background: var(--primary-gradient);
             color: white;
-            padding: 24px 16px;
-            border-radius: 16px;
-            box-shadow: 0 10px 15px -3px rgba(161, 98, 7, 0.2);
+            padding: 28px 20px;
+            border-radius: 20px;
+            box-shadow: 0 12px 20px -4px rgba(120, 53, 15, 0.25);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+            pointer-events: none;
         }
 
         header h1 {
-            font-size: 1.4rem;
-            margin: 0 0 8px 0;
+            font-size: 1.5rem;
+            margin: 0 0 6px 0;
             font-family: 'Noto Sans Javanese', sans-serif;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
         }
 
         header p {
             font-size: 0.85rem;
             margin: 0;
             opacity: 0.9;
+            font-weight: 500;
         }
 
+        /* Navigasi Tab Elegan */
         .tabs {
             display: flex;
-            background: #e2e8f0;
-            padding: 4px;
-            border-radius: 12px;
+            background: #cbd5e1;
+            padding: 5px;
+            border-radius: 14px;
             margin-bottom: 20px;
+            box-shadow: inset var(--shadow-sm);
         }
 
         .tab-btn {
             flex: 1;
-            padding: 10px 6px;
+            padding: 10px 4px;
             border: none;
             background: transparent;
             cursor: pointer;
-            font-weight: 600;
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            border-radius: 9px;
-            transition: all 0.3s ease;
+            font-weight: 700;
+            font-size: 0.75rem;
+            color: #475569;
+            border-radius: 10px;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            text-align: center;
         }
 
         .tab-btn.active {
             background: var(--card-bg);
             color: var(--primary);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transform: scale(1.02);
         }
 
         .tab-content {
@@ -95,39 +116,40 @@
 
         .tab-content.active {
             display: block;
-            animation: fadeIn 0.3s ease-in-out;
+            animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(4px); }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(8px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* Kartu Estetik */
         .card {
             background: var(--card-bg);
             border: 1px solid var(--border);
-            padding: 20px;
-            border-radius: 16px;
+            padding: 22px;
+            border-radius: 20px;
             margin-bottom: 16px;
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow-md);
         }
 
         label {
             display: block;
-            font-weight: 600;
-            margin-bottom: 8px;
-            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            font-size: 0.78rem;
             color: var(--text-muted);
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.8px;
         }
 
         textarea {
             width: 100%;
             height: 100px;
             padding: 14px;
-            border: 1px solid var(--border);
-            border-radius: 12px;
+            border: 2px solid var(--border);
+            border-radius: 14px;
             font-family: inherit;
             font-size: 1rem;
             resize: none;
@@ -140,93 +162,106 @@
             outline: none;
             border-color: var(--accent);
             background: #ffffff;
-            box-shadow: 0 0 0 3px rgba(202, 138, 4, 0.1);
+            box-shadow: 0 0 0 4px rgba(217, 119, 6, 0.12);
         }
 
+        /* Output Box Mewah */
         .output-box {
             font-family: 'Noto Sans Javanese', sans-serif;
             font-size: 2rem;
-            padding: 16px;
-            background: var(--primary-light);
-            border: 1px solid #fde047;
-            border-radius: 12px;
-            min-height: 70px;
+            padding: 18px;
+            background: var(--accent-light);
+            border: 2px solid #fde68a;
+            border-radius: 14px;
+            min-height: 76px;
             display: flex;
             align-items: center;
             word-break: break-all;
             margin-bottom: 14px;
-            color: #713f12;
+            color: #78350f;
         }
 
+        /* Tombol Aksi */
         .action-btn {
-            background: #713f12;
+            background: var(--primary-gradient);
             color: white;
             border: none;
             width: 100%;
-            padding: 12px;
-            border-radius: 12px;
+            padding: 14px;
+            border-radius: 14px;
             cursor: pointer;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 0.9rem;
-            transition: background 0.2s;
-            box-shadow: 0 4px 6px -1px rgba(113, 63, 18, 0.2);
+            transition: all 0.2s;
+            box-shadow: 0 4px 12px rgba(120, 53, 15, 0.25);
         }
 
         .action-btn:active {
             transform: scale(0.98);
-            background: #582f0e;
+            box-shadow: 0 2px 6px rgba(120, 53, 15, 0.15);
         }
 
-        /* Seksi Kamus & Referensi */
+        /* Judul Seksi Ensiklopedia */
         .section-title {
-            font-size: 0.95rem;
-            font-weight: 700;
+            font-size: 0.88rem;
+            font-weight: 800;
             color: var(--primary);
-            margin: 16px 0 8px 0;
-            border-left: 3px solid var(--accent);
-            padding-left: 8px;
+            margin: 20px 0 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 14px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        /* Grid Kamus Modern */
         .grid-carakan {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 8px;
+            gap: 10px;
             text-align: center;
-            margin-bottom: 12px;
         }
 
         .glyph-card {
             background: #f8fafc;
             border: 1px solid var(--border);
-            padding: 10px 4px;
-            border-radius: 10px;
-            transition: transform 0.2s, background 0.2s;
+            padding: 12px 6px;
+            border-radius: 12px;
+            transition: all 0.2s ease;
         }
 
         .glyph-card:hover {
-            background: var(--primary-light);
-            border-color: #fde047;
+            background: var(--accent-light);
+            border-color: #fde68a;
+            transform: translateY(-2px);
         }
 
         .glyph-card span {
             font-family: 'Noto Sans Javanese', sans-serif;
             font-size: 1.4rem;
             display: block;
-            margin-bottom: 2px;
+            margin-bottom: 4px;
             color: var(--primary);
         }
 
         .glyph-card small {
             color: var(--text-muted);
             font-size: 0.7rem;
-            font-weight: 500;
+            font-weight: 600;
         }
 
         footer {
             text-align: center;
-            margin-top: 24px;
+            margin-top: 28px;
             font-size: 0.75rem;
             color: var(--text-muted);
+            font-weight: 500;
         }
     </style>
 </head>
@@ -242,7 +277,8 @@
         <!-- Navigasi Tab -->
         <div class="tabs">
             <button class="tab-btn active" onclick="switchTab('converter', this)">Konverter</button>
-            <button class="tab-btn" onclick="switchTab('dictionary', this)">Kamus & Aturan</button>
+            <button class="tab-btn" onclick="switchTab('dictionary', this)">Carakan & Pasangan</button>
+            <button class="tab-btn" onclick="switchTab('rules', this)">Sandhangan & Angka</button>
         </div>
 
         <!-- Bagian Konverter -->
@@ -259,11 +295,10 @@
             </div>
         </section>
 
-        <!-- Bagian Kamus & Referensi Lengkap -->
+        <!-- Bagian 1: Kamus Carakan & Pasangan -->
         <section id="dictionary-section" class="tab-content">
             <div class="card">
-                <!-- 1. Carakan Dasar -->
-                <div class="section-title">1. Aksara Carakan Dasar (Legena)</div>
+                <div class="section-title">Aksara Carakan Dasar (Legena)</div>
                 <div class="grid-carakan">
                     <div class="glyph-card"><span>ꦲ</span><small>ha</small></div>
                     <div class="glyph-card"><span>ꦤ</span><small>na</small></div>
@@ -287,62 +322,77 @@
                     <div class="glyph-card"><span>ꦔ</span><small>nga</small></div>
                 </div>
 
-                <!-- 2. Pasangan -->
-                <div class="section-title">2. Pasangan (Pengganti Konsonan Mati)</div>
+                <div class="section-title">Pasangan Aksara</div>
                 <div class="grid-carakan">
-                    <div class="glyph-card"><span>꧀ꦲ</span><small>-ha</small></div>
-                    <div class="glyph-card"><span>꧀ꦤ</span><small>-na</small></div>
-                    <div class="glyph-card"><span>꧀ꦕ</span><small>-ca</small></div>
-                    <div class="glyph-card"><span>꧀ꦫ</span><small>-ra</small></div>
-                    <div class="glyph-card"><span>꧀ꦏ</span><small>-ka</small></div>
-                    <div class="glyph-card"><span>꧀ꦢ</span><small>-da</small></div>
-                    <div class="glyph-card"><span>꧀ꦠ</span><small>-ta</small></div>
-                    <div class="glyph-card"><span>꧀ꦱ</span><small>-sa</small></div>
-                    <div class="glyph-card"><span>꧀ꦮ</span><small>-wa</small></div>
-                    <div class="glyph-card"><span>꧀ꦭ</span><small>-la</small></div>
-                    <div class="glyph-card"><span>꧀ꦥ</span><small>-pa</small></div>
-                    <div class="glyph-card"><span>꧀ꦝ</span><small>-dha</small></div>
-                    <div class="glyph-card"><span>꧀ꦗ</span><small>-ja</small></div>
-                    <div class="glyph-card"><span>꧀ꦪ</span><small>-ya</small></div>
-                    <div class="glyph-card"><span>꧀ꦚ</span><small>-nya</small></div>
-                    <div class="glyph-card"><span>꧀ꦩ</span><small>-ma</small></div>
-                    <div class="glyph-card"><span>꧀ꦒ</span><small>-ga</small></div>
-                    <div class="glyph-card"><span>꧀ꦧ</span><small>-ba</small></div>
-                    <div class="glyph-card"><span>꧀ꦛ</span><small>-tha</small></div>
-                    <div class="glyph-card"><span>꧀ꦔ</span><small>-nga</small></div>
+                    <div class="glyph-card"><span>꧀ꦲ</span><small>pa-ha</small></div>
+                    <div class="glyph-card"><span>꧀ꦤ</span><small>pa-na</small></div>
+                    <div class="glyph-card"><span>꧀ꦕ</span><small>pa-ca</small></div>
+                    <div class="glyph-card"><span>꧀ꦫ</span><small>pa-ra</small></div>
+                    <div class="glyph-card"><span>꧀ꦏ</span><small>pa-ka</small></div>
+                    <div class="glyph-card"><span>꧀ꦢ</span><small>pa-da</small></div>
+                    <div class="glyph-card"><span>꧀ꦠ</span><small>pa-ta</small></div>
+                    <div class="glyph-card"><span>꧀ꦱ</span><small>pa-sa</small></div>
+                    <div class="glyph-card"><span>꧀ꦮ</span><small>pa-wa</small></div>
+                    <div class="glyph-card"><span>꧀ꦭ</span><small>pa-la</small></div>
+                    <div class="glyph-card"><span>꧀ꦥ</span><small>pa-pa</small></div>
+                    <div class="glyph-card"><span>꧀ꦝ</span><small>pa-dha</small></div>
+                    <div class="glyph-card"><span>꧀ꦗ</span><small>pa-ja</small></div>
+                    <div class="glyph-card"><span>꧀ꦪ</span><small>pa-ya</small></div>
+                    <div class="glyph-card"><span>꧀ꦚ</span><small>pa-nya</small></div>
+                    <div class="glyph-card"><span>꧀ꦩ</span><small>pa-ma</small></div>
+                    <div class="glyph-card"><span>꧀ꦒ</span><small>pa-ga</small></div>
+                    <div class="glyph-card"><span>꧀ꦧ</span><small>pa-ba</small></div>
+                    <div class="glyph-card"><span>꧀ꦛ</span><small>pa-tha</small></div>
+                    <div class="glyph-card"><span>꧀ꦔ</span><small>pa-nga</small></div>
                 </div>
+            </div>
+        </section>
 
-                <!-- 3. Sandhangan Swara -->
-                <div class="section-title">3. Sandhangan Swara (Pengatur Vokal)</div>
+        <!-- Bagian 2: Sandhangan & Angka -->
+        <section id="rules-section" class="tab-content">
+            <div class="card">
+                <div class="section-title">Sandhangan Swara (Vokal)</div>
                 <div class="grid-carakan">
                     <div class="glyph-card"><span>ꦶ</span><small>Wulu (i)</small></div>
-                    <div class="glyph-card"><span>_1</span><small>Suku (u)</small></div>
+                    <div class="glyph-card"><span>ꦲu</span><small>Suku (u)</small></div>
                     <div class="glyph-card"><span>ꦼ</span><small>Pepet (e)</small></div>
                     <div class="glyph-card"><span>ꦺ</span><small>Taling (é)</small></div>
                     <div class="glyph-card"><span>ꦴ</span><small>Tarung (o)</small></div>
                 </div>
 
-                <!-- 4. Sandhangan Panyigeg Wanda -->
-                <div class="section-title">4. Sandhangan Panyigeg Wanda (Penutup)</div>
+                <div class="section-title">Sandhangan Panyigeg Wanda</div>
                 <div class="grid-carakan">
                     <div class="glyph-card"><span>ꦃ</span><small>Wignyan (h)</small></div>
                     <div class="glyph-card"><span>ꦂ</span><small>Layar (r)</small></div>
                     <div class="glyph-card"><span>ꦁ</span><small>Cecak (ng)</small></div>
-                    <div class="glyph-card"><span>꧀</span><small>Pangkon (mati)</small></div>
+                    <div class="glyph-card"><span>꧀</span><small>Pangkon</small></div>
                 </div>
 
-                <!-- 5. Sandhangan Wyanjana -->
-                <div class="section-title">5. Sandhangan Wyanjana (Sisipan)</div>
+                <div class="section-title">Sandhangan Wyanjana</div>
                 <div class="grid-carakan">
                     <div class="glyph-card"><span>ꦿ</span><small>Cakra (-r-)</small></div>
                     <div class="glyph-card"><span>ꦽ</span><small>Keret (-re-)</small></div>
                     <div class="glyph-card"><span>ꦾ</span><small>Pengkal (-y-)</small></div>
                 </div>
+
+                <div class="section-title">Angka Jawa</div>
+                <div class="grid-carakan">
+                    <div class="glyph-card"><span>꧑</span><small>1 (siji)</small></div>
+                    <div class="glyph-card"><span>꧒</span><small>2 (loro)</small></div>
+                    <div class="glyph-card"><span>꧓</span><small>3 (telu)</small></div>
+                    <div class="glyph-card"><span>꧔</span><small>4 (papat)</small></div>
+                    <div class="glyph-card"><span>꧕</span><small>5 (lima)</small></div>
+                    <div class="glyph-card"><span>꧖</span><small>6 (enem)</small></div>
+                    <div class="glyph-card"><span>꧗</span><small>7 (pitu)</small></div>
+                    <div class="glyph-card"><span>꧘</span><small>8 (wolu)</small></div>
+                    <div class="glyph-card"><span>꧙</span><small>9 (sanga)</small></div>
+                    <div class="glyph-card"><span>꧰</span><small>0 (nul)</small></div>
+                </div>
             </div>
         </section>
 
         <footer>
-            Aksara Jawa Studio &bull; 2026
+            Aksara Jawa Studio &bull; Premium Edition 2026
         </footer>
     </div>
 
@@ -354,46 +404,53 @@
             element.classList.add('active');
             if (tabName === 'converter') {
                 document.getElementById('converter-section').classList.add('active');
-            } else {
+            } else if (tabName === 'dictionary') {
                 document.getElementById('dictionary-section').classList.add('active');
+            } else {
+                document.getElementById('rules-section').classList.add('active');
             }
         }
 
-        const carakanMap = {
+        const dictionary = {
+            'nya': 'ꦚ', 'nga': 'ꦔ', 'dha': 'ꦝ', 'tha': 'ꦛ',
             'ha': 'ꦲ', 'na': 'ꦤ', 'ca': 'ꦕ', 'ra': 'ꦫ', 'ka': 'ꦏ',
             'da': 'ꦢ', 'ta': 'ꦠ', 'sa': 'ꦱ', 'wa': 'ꦮ', 'la': 'ꦭ',
-            'pa': 'ꦥ', 'dha': 'ꦝ', 'ja': 'ꦗ', 'ya': 'ꦪ', 'nya': 'ꦚ',
-            'ma': 'ꦩ', 'ga': 'ꦒ', 'ba': 'ꦧ', 'tha': 'ꦛ', 'nga': 'ꦔ',
-            'h': 'ꦲ', 'n': 'ꦤ', 'c': 'ꦕ', 'r': 'ꦫ', 'k': 'ꦏ',
-            'd': 'ꦢ', 't': 'ꦠ', 's': 'ꦱ', 'w': 'ꦮ', 'l': 'ꦭ',
-            'p': 'ꦥ', 'j': 'ꦗ', 'y': 'ꦪ', 'm': 'ꦩ', 'g': 'ꦒ',
-            'b': 'ꦧ'
+            'pa': 'ꦥ', 'ja': 'ꦗ', 'ya': 'ꦪ', 'ma': 'ꦩ', 'ga': 'ꦒ',
+            'ba': 'ꦧ',
+            'h': 'ꦲ꧀', 'n': 'ꦤ꧀', 'c': 'ꦕ꧀', 'r': 'ꦫ꧀', 'k': 'ꦏ꧀',
+            'd': 'ꦢ꧀', 't': 'ꦠ꧀', 's': 'ꦱ꧀', 'w': 'ꦮ꧀', 'l': 'ꦭ꧀',
+            'p': 'ꦥ꧀', 'j': 'ꦗ꧀', 'y': 'ꦪ꧀', 'm': 'ꦩ꧀', 'g': 'ꦒ꧀',
+            'b': 'ꦧ꧀',
+            'a': 'ꦄ', 'i': 'ꦆ', 'u': 'ꦈ', 'e': 'ꦌ', 'o': 'ꦎ',
+            ' ': ' ', '.': '꧀'
         };
 
         function handleTransliterate() {
-            let input = document.getElementById('latin-input').value.toLowerCase().trim();
+            let input = document.getElementById('latin-input').value.toLowerCase();
             const outputBox = document.getElementById('javanese-output');
 
-            if (!input) {
+            if (!input.trim()) {
                 outputBox.textContent = "ꦲꦭꦺꦴ";
                 return;
             }
 
-            let keys = Object.keys(carakanMap).sort((a, b) => b.length - a.length);
+            let keys = Object.keys(dictionary).sort((a, b) => b.length - a.length);
             let result = "";
             let i = 0;
 
             while (i < input.length) {
                 let match = "";
+                let matchedKey = "";
                 for (let key of keys) {
                     if (input.substr(i, key.length) === key) {
-                        match = carakanMap[key];
-                        i += key.length;
+                        match = dictionary[key];
+                        matchedKey = key;
                         break;
                     }
                 }
                 if (match) {
                     result += match;
+                    i += matchedKey.length;
                 } else {
                     result += input[i];
                     i++;
