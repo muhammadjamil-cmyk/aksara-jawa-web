@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Aksara Jawa Studio</title>
-    <!-- Memuat Font Unicode Noto Sans Javanese & Inter -->
+    <title>Aksara Jawa Studio Komplet</title>
+    <!-- Memuat Font Unicode Noto Sans Javanese & Plus Jakarta Sans -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Javanese&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -12,7 +12,7 @@
             --card-bg: #ffffff;
             --text-main: #0f172a;
             --text-muted: #64748b;
-            --primary: #854d0e; /* Nuansa Klasik / Kayu / Keraton */
+            --primary: #854d0e;
             --primary-light: #fef9c3;
             --accent: #ca8a04;
             --border: #e2e8f0;
@@ -39,7 +39,6 @@
             max-width: 500px;
         }
 
-        /* Header Elegan */
         header {
             text-align: center;
             margin-bottom: 24px;
@@ -51,7 +50,7 @@
         }
 
         header h1 {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             margin: 0 0 8px 0;
             font-family: 'Noto Sans Javanese', sans-serif;
             letter-spacing: 1px;
@@ -63,7 +62,6 @@
             opacity: 0.9;
         }
 
-        /* Navigasi Tab Modern */
         .tabs {
             display: flex;
             background: #e2e8f0;
@@ -74,12 +72,12 @@
 
         .tab-btn {
             flex: 1;
-            padding: 10px;
+            padding: 10px 6px;
             border: none;
             background: transparent;
             cursor: pointer;
             font-weight: 600;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--text-muted);
             border-radius: 9px;
             transition: all 0.3s ease;
@@ -105,7 +103,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Kartu Konten */
         .card {
             background: var(--card-bg);
             border: 1px solid var(--border);
@@ -146,7 +143,6 @@
             box-shadow: 0 0 0 3px rgba(202, 138, 4, 0.1);
         }
 
-        /* Kotak Hasil */
         .output-box {
             font-family: 'Noto Sans Javanese', sans-serif;
             font-size: 2rem;
@@ -162,7 +158,6 @@
             color: #713f12;
         }
 
-        /* Tombol Aksi */
         .action-btn {
             background: #713f12;
             color: white;
@@ -182,19 +177,29 @@
             background: #582f0e;
         }
 
-        /* Kamus Grid Estetik */
+        /* Seksi Kamus & Referensi */
+        .section-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 16px 0 8px 0;
+            border-left: 3px solid var(--accent);
+            padding-left: 8px;
+        }
+
         .grid-carakan {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
+            gap: 8px;
             text-align: center;
+            margin-bottom: 12px;
         }
 
         .glyph-card {
             background: #f8fafc;
             border: 1px solid var(--border);
-            padding: 12px 4px;
-            border-radius: 12px;
+            padding: 10px 4px;
+            border-radius: 10px;
             transition: transform 0.2s, background 0.2s;
         }
 
@@ -205,19 +210,18 @@
 
         .glyph-card span {
             font-family: 'Noto Sans Javanese', sans-serif;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             display: block;
-            margin-bottom: 4px;
+            margin-bottom: 2px;
             color: var(--primary);
         }
 
         .glyph-card small {
             color: var(--text-muted);
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 500;
         }
 
-        /* Footer Info */
         footer {
             text-align: center;
             margin-top: 24px;
@@ -229,16 +233,16 @@
 <body>
 
     <div class="container">
-        <!-- Header Gaya Baru -->
+        <!-- Header -->
         <header>
             <h1>ꦄꦏ꧀ꦱꦫꦗꦮ Studio</h1>
-            <p>Eksplorasi Konverter & Kamus Aksara Nusantara</p>
+            <p>Konverter & Ensiklopedia Aksara Nusantara</p>
         </header>
 
         <!-- Navigasi Tab -->
         <div class="tabs">
-            <button class="tab-btn active" onclick="switchTab('converter', this)">Konverter Teks</button>
-            <button class="tab-btn" onclick="switchTab('dictionary', this)">Kamus 20 Carakan</button>
+            <button class="tab-btn active" onclick="switchTab('converter', this)">Konverter</button>
+            <button class="tab-btn" onclick="switchTab('dictionary', this)">Kamus & Aturan</button>
         </div>
 
         <!-- Bagian Konverter -->
@@ -255,10 +259,11 @@
             </div>
         </section>
 
-        <!-- Bagian Kamus / Referensi -->
+        <!-- Bagian Kamus & Referensi Lengkap -->
         <section id="dictionary-section" class="tab-content">
             <div class="card">
-                <label style="margin-bottom: 14px;">Daftar 20 Carakan Dasar</label>
+                <!-- 1. Carakan Dasar -->
+                <div class="section-title">1. Aksara Carakan Dasar (Legena)</div>
                 <div class="grid-carakan">
                     <div class="glyph-card"><span>ꦲ</span><small>ha</small></div>
                     <div class="glyph-card"><span>ꦤ</span><small>na</small></div>
@@ -281,11 +286,63 @@
                     <div class="glyph-card"><span>ꦛ</span><small>tha</small></div>
                     <div class="glyph-card"><span>ꦔ</span><small>nga</small></div>
                 </div>
+
+                <!-- 2. Pasangan -->
+                <div class="section-title">2. Pasangan (Pengganti Konsonan Mati)</div>
+                <div class="grid-carakan">
+                    <div class="glyph-card"><span>꧀ꦲ</span><small>-ha</small></div>
+                    <div class="glyph-card"><span>꧀ꦤ</span><small>-na</small></div>
+                    <div class="glyph-card"><span>꧀ꦕ</span><small>-ca</small></div>
+                    <div class="glyph-card"><span>꧀ꦫ</span><small>-ra</small></div>
+                    <div class="glyph-card"><span>꧀ꦏ</span><small>-ka</small></div>
+                    <div class="glyph-card"><span>꧀ꦢ</span><small>-da</small></div>
+                    <div class="glyph-card"><span>꧀ꦠ</span><small>-ta</small></div>
+                    <div class="glyph-card"><span>꧀ꦱ</span><small>-sa</small></div>
+                    <div class="glyph-card"><span>꧀ꦮ</span><small>-wa</small></div>
+                    <div class="glyph-card"><span>꧀ꦭ</span><small>-la</small></div>
+                    <div class="glyph-card"><span>꧀ꦥ</span><small>-pa</small></div>
+                    <div class="glyph-card"><span>꧀ꦝ</span><small>-dha</small></div>
+                    <div class="glyph-card"><span>꧀ꦗ</span><small>-ja</small></div>
+                    <div class="glyph-card"><span>꧀ꦪ</span><small>-ya</small></div>
+                    <div class="glyph-card"><span>꧀ꦚ</span><small>-nya</small></div>
+                    <div class="glyph-card"><span>꧀ꦩ</span><small>-ma</small></div>
+                    <div class="glyph-card"><span>꧀ꦒ</span><small>-ga</small></div>
+                    <div class="glyph-card"><span>꧀ꦧ</span><small>-ba</small></div>
+                    <div class="glyph-card"><span>꧀ꦛ</span><small>-tha</small></div>
+                    <div class="glyph-card"><span>꧀ꦔ</span><small>-nga</small></div>
+                </div>
+
+                <!-- 3. Sandhangan Swara -->
+                <div class="section-title">3. Sandhangan Swara (Pengatur Vokal)</div>
+                <div class="grid-carakan">
+                    <div class="glyph-card"><span>ꦶ</span><small>Wulu (i)</small></div>
+                    <div class="glyph-card"><span>_1</span><small>Suku (u)</small></div>
+                    <div class="glyph-card"><span>ꦼ</span><small>Pepet (e)</small></div>
+                    <div class="glyph-card"><span>ꦺ</span><small>Taling (é)</small></div>
+                    <div class="glyph-card"><span>ꦴ</span><small>Tarung (o)</small></div>
+                </div>
+
+                <!-- 4. Sandhangan Panyigeg Wanda -->
+                <div class="section-title">4. Sandhangan Panyigeg Wanda (Penutup)</div>
+                <div class="grid-carakan">
+                    <div class="glyph-card"><span>ꦃ</span><small>Wignyan (h)</small></div>
+                    <div class="glyph-card"><span>ꦂ</span><small>Layar (r)</small></div>
+                    <div class="glyph-card"><span>ꦁ</span><small>Cecak (ng)</small></div>
+                    <div class="glyph-card"><span>꧀</span><small>Pangkon (mati)</small></div>
+                </div>
+
+                <!-- 5. Sandhangan Wyanjana -->
+                <div class="section-title">5. Sandhangan Wyanjana (Sisipan)</div>
+                <div class="grid-carakan">
+                    <div class="glyph-card"><span>ꦿ</span><small>Cakra (-r-)</small></div>
+                    <div class="glyph-card"><span>ꦽ</span><small>Keret (-re-)</small></div>
+                    <div class="glyph-card"><span>ꦾ</span><small>Pengkal (-y-)</small></div>
+                </div>
             </div>
         </section>
 
         <footer>
-            Dibuat khusus dengan estetika Nusantara &bull; 2026
+            Aksara Jawa Studio &bull; 2026
         </footer>
     </div>
 
