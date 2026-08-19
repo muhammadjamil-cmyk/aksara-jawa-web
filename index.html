@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Aksara Jawa Studio</title>
+    <!-- Memuat Font Unicode Noto Sans Javanese & Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Javanese&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --primary: #0284c7;
+            --primary-hover: #0369a1;
+            --border: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 16px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            font-size: 1.4rem;
+            margin-bottom: 6px;
+            font-family: 'Noto Sans Javanese', 'Inter', sans-serif;
+        }
+
+        header p {
+            color: #64748b;
+            font-size: 0.85rem;
+            margin: 0;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid var(--border);
+            background: var(--card-bg);
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.9rem;
+            border-radius: 10px;
+            transition: all 0.2s;
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 16px;
+            border-radius: 12px;
+            margin-bottom: 14px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+        }
+
+        label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+            color: #475569;
+        }
+
+        textarea {
+            width: 100%;
+            height: 90px;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+            resize: none;
+            background: #ffffff;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .output-box {
+            font-family: 'Noto Sans Javanese', sans-serif;
+            font-size: 1.8rem;
+            padding: 14px;
+            background: #f1f5f9;
+            border-radius: 8px;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            word-break: break-all;
+            margin-bottom: 12px;
+            color: #0f172a;
+        }
+
+        .copy-btn {
+            background: #e2e8f0;
+            border: none;
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #334155;
+            transition: background 0.2s;
+        }
+
+        .copy-btn:active {
+            background: #cbd5e1;
+        }
+
+        .grid-carakan {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+            text-align: center;
+        }
+
+        .glyph-card {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            padding: 10px 4px;
+            border-radius: 8px;
+        }
+
+        .glyph-card span {
+            font-family: 'Noto Sans Javanese', sans-serif;
+            font-size: 1.4rem;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .glyph-card small {
+            color: #64748b;
+            font-size: 0.75rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>ꦄꦏ꧀ꦱꦫꦗꦮ Aksara Jawa Studio</h1>
+            <p>Konverter & Kamus Interaktif</p>
+        </header>
+
+        <!-- Navigasi Tab -->
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('converter', this)">Konverter</button>
+            <button class="tab-btn" onclick="switchTab('dictionary', this)">Kamus Dasar</button>
+        </div>
+
+        <!-- Bagian Konverter -->
+        <section id="converter-section" class="tab-content active">
+            <div class="card">
+                <label for="latin-input">Ketik Teks Latin:</label>
+                <textarea id="latin-input" placeholder="Contoh: h n c r k d t s w l..." oninput="handleTransliterate()"></textarea>
+            </div>
+
+            <div class="card">
+                <label>Hasil Aksara Jawa:</label>
+                <div id="javanese-output" class="output-box">ꦲꦭꦺꦴ</div>
+                <button class="copy-btn" onclick="copyResult()">Salin Hasil Teks</button>
+            </div>
+        </section>
+
+        <!-- Bagian Kamus / Referensi -->
+        <section id="dictionary-section" class="tab-content">
+            <div class="card">
+                <label style="margin-bottom: 12px; font-weight: 600;">Carakan Dasar (Legena)</label>
+                <div class="grid-carakan">
+                    <div class="glyph-card"><span>ꦲ</span><small>ha</small></div>
+                    <div class="glyph-card"><span>ꦤ</span><small>na</small></div>
+                    <div class="glyph-card"><span>ꦕ</span><small>ca</small></div>
+                    <div class="glyph-card"><span>ꦫ</span><small>ra</small></div>
+                    <div class="glyph-card"><span>ꦏ</span><small>ka</small></div>
+                    <div class="glyph-card"><span>ꦝ</span><small>da</small></div>
+                    <div class="glyph-card"><span>ꦠ</span><small>ta</small></div>
+                    <div class="glyph-card"><span>ꦱ</span><small>sa</small></div>
+                    <div class="glyph-card"><span>ꦮ</span><small>wa</small></div>
+                    <div class="glyph-card"><span>ꦭ</span><small>la</small></div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Fungsi Tab
+        function switchTab(tabName, element) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+
+            element.classList.add('active');
+            if (tabName === 'converter') {
+                document.getElementById('converter-section').classList.add('active');
+            } else {
+                document.getElementById('dictionary-section').classList.add('active');
+            }
+        }
+
+        // Fungsi Transliterasi Dasar
+        function handleTransliterate() {
+            const input = document.getElementById('latin-input').value.toLowerCase();
+            const outputBox = document.getElementById('javanese-output');
+
+            if (!input.trim()) {
+                outputBox.textContent = "ꦲꦭꦺꦴ";
+                return;
+            }
+
+            let translated = "";
+            for (let i = 0; i < input.length; i++) {
+                let char = input[i];
+                if (char === 'h') translated += 'ꦲ';
+                else if (char === 'n') translated += 'ꦤ';
+                else if (char === 'c') translated += 'ꦕ';
+                else if (char === 'r') translated += 'ꦫ';
+                else if (char === 'k') translated += 'ꦏ';
+                else if (char === 'd') translated += 'ꦝ';
+                else if (char === 't') translated += 'ꦠ';
+                else if (char === 's') translated += 'ꦱ';
+                else if (char === 'w') translated += 'ꦮ';
+                else if (char === 'l') translated += 'ꦭ';
+                else translated += char; 
+            }
+
+            outputBox.textContent = translated;
+        }
+
+        // Fungsi Salin (Kompatibel untuk iOS Safari)
+        function copyResult() {
+            const outputText = document.getElementById('javanese-output').textContent;
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(outputText).then(() => {
+                    alert("Berhasil disalin!");
+                }).catch(() => {
+                    fallbackCopy(outputText);
+                });
+            } else {
+                fallbackCopy(outputText);
+            }
+        }
+
+        function fallbackCopy(text) {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            textArea.style.position = "fixed";
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                alert("Berhasil disalin!");
+            } catch (err) {
+                alert("Gagal menyalin teks.");
+            }
+            document.body.removeChild(textArea);
+        }
+    </script>
+</body>
+</html>
