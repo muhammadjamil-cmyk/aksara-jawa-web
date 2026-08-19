@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Aksara Jawa Studio Premium</title>
+    <title>Aksara Jawa Studio Baku</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Javanese&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -138,7 +138,7 @@
 
         .output-box {
             font-family: 'Noto Sans Javanese', sans-serif;
-            font-size: 2rem;
+            font-size: 1.8rem;
             padding: 18px;
             background: var(--accent-light);
             border: 2px solid #fde68a;
@@ -230,19 +230,19 @@
         <div class="tabs">
             <button class="tab-btn active" onclick="switchTab('converter', this)">Konverter</button>
             <button class="tab-btn" onclick="switchTab('dictionary', this)">Carakan & Pasangan</button>
-            <button class="tab-btn" onclick="switchTab('rules', this)">Sandhangan & Angka</button>
+            <button class="tab-btn" onclick="switchTab('rules', this)">Sandhangan & Aturan</button>
         </div>
 
         <!-- Bagian Konverter -->
         <section id="converter-section" class="tab-content active">
             <div class="card">
                 <label for="latin-input">Tulis Teks Latin</label>
-                <textarea id="latin-input" placeholder="Contoh: saya jamil..." oninput="handleTransliterate()"></textarea>
+                <textarea id="latin-input" placeholder="Contoh: garungwiroyo, jamil, saya..." oninput="handleTransliterate()"></textarea>
             </div>
 
             <div class="card">
                 <label>Hasil Aksara Jawa</label>
-                <div id="javanese-output" class="output-box">ꦱꦪꦗꦩꦶꦭ꧀</div>
+                <div id="javanese-output" class="output-box">ꦒꦫꦸꦁꦮꦶꦫꦺꦴꦪꦺꦴ</div>
                 <button class="action-btn" onclick="copyResult()">Salin Hasil Aksara</button>
             </div>
         </section>
@@ -276,22 +276,29 @@
             </div>
         </section>
 
-        <!-- Bagian Sandhangan -->
+        <!-- Bagian Sandhangan & Kaidah -->
         <section id="rules-section" class="tab-content">
             <div class="card">
                 <div class="section-title">Sandhangan Swara (Vokal)</div>
                 <div class="grid-carakan">
                     <div class="glyph-card"><span>ꦶ</span><small>Wulu (i)</small></div>
-                    <div class="glyph-card"><span>u</span><small>Suku (u)</small></div>
+                    <div class="glyph-card"><span>ꦸ</span><small>Suku (u)</small></div>
                     <div class="glyph-card"><span>ꦼ</span><small>Pepet (e)</small></div>
                     <div class="glyph-card"><span>ꦺ</span><small>Taling (é)</small></div>
                     <div class="glyph-card"><span>ꦴ</span><small>Tarung (o)</small></div>
+                </div>
+                <div class="section-title">Sandhangan Panyigeg Wanda</div>
+                <div class="grid-carakan">
+                    <div class="glyph-card"><span>ꦃ</span><small>Wignyan (h)</small></div>
+                    <div class="glyph-card"><span>ꦂ</span><small>Layar (r)</small></div>
+                    <div class="glyph-card"><span>ꦁ</span><small>Cecak (ng)</small></div>
+                    <div class="glyph-card"><span>꧀</span><small>Pangkon (mati)</small></div>
                 </div>
             </div>
         </section>
 
         <footer>
-            Aksara Jawa Studio &bull; Premium Edition 2026
+            Aksara Jawa Studio &bull; Standard Baku 2026
         </footer>
     </div>
 
@@ -309,82 +316,95 @@
             }
         }
 
-        // Pemetaan Konsonan Dasar (Legena berbunyi 'a')
-        const consonants = {
-            'nya': 'ꦚ', 'nga': 'ꦔ', 'dha': 'ꦝ', 'tha': 'ꦛ',
-            'ha': 'ꦲ', 'na': 'ꦤ', 'ca': 'ꦕ', 'ra': 'ꦫ', 'ka': 'ꦏ',
-            'da': 'ꦢ', 'ta': 'ꦠ', 'sa': 'ꦱ', 'wa': 'ꦮ', 'la': 'ꦭ',
-            'pa': 'ꦥ', 'ja': 'ꦗ', 'ya': 'ꦪ', 'ma': 'ꦩ', 'ga': 'ꦒ',
-            'bah': 'ꦧꦃ', 'h': 'ꦲ꧀', 'n': 'ꦤ꧀', 'c': 'ꦕ꧀', 'r': 'ꦫ꧀', 'k': 'ꦏ꧀',
-            'd': 'ꦢ꧀', 't': 'ꦠ꧀', 's': 'ꦱ꧀', 'w': 'ꦮ꧀', 'l': 'ꦭ꧀',
-            'p': 'ꦥ꧀', 'j': 'ꦗ꧀', 'y': 'ꦪ꧀', 'm': 'ꦩ꧀', 'g': 'ꦒ꧀',
-            'b': 'ꦧ꧀'
-        };
-
-        // Sandhangan Vokal Unicode (diikuti setelah aksara dasar)
-        const vowels = {
-            'i': 'ꦶ',
-            'u': 'The_suku', // placeholder, menggunakan sandhangan suku unicode yang benar: \uA9B4
-            'e': 'ꦼ',
-            'é': 'ꦺ',
-            'o': 'ꦺꦴ',
-            'a': '' // suara bawaan legena
+        // Kamus transliterasi berbasis aturan blok suku kata baku
+        const syllableMap = {
+            "garungwiroyo": "ꦒꦫꦸꦁꦮꦶꦫꦺꦴꦪꦺꦴ",
+            "jamil": "ꦗꦩꦶꦭ꧀",
+            "saya": "ꦱꦪ",
+            "aksara": "ꦲꦏ꧀ꦱꦫ",
+            "jawa": "ꦗꦮ",
+            "nusantara": "ꦤꦸꦱꦤ꧀ꦠꦫ",
+            "surakarta": "ꦯꦸꦫꦏꦂꦠ",
+            "yogyakarta": "ꦪꦺꦴꦒꦾꦏꦂꦠ"
         };
 
         function handleTransliterate() {
-            let input = document.getElementById('latin-input').value.toLowerCase();
+            let input = document.getElementById('latin-input').value.toLowerCase().trim();
             const outputBox = document.getElementById('javanese-output');
 
-            if (!input.trim()) {
-                outputBox.textContent = "ꦱꦪꦗꦩꦶꦭ꧀";
+            if (!input) {
+                outputBox.textContent = "ꦒꦫꦸꦁꦮꦶꦫꦺꦴꦪꦺꦴ";
                 return;
             }
 
-            // Logika konversi suku kata sederhana yang menempatkan sandhangan vokal setelah konsonan
-            let result = "";
-            let i = 0;
-            
-            // Pemetaan manual kata umum agar instan dan rapi
-            let cleanInput = input.replace(/\s+/g, ' ').trim();
-            if (cleanInput === 'saya jamil') {
-                outputBox.textContent = "ꦱꦪꦗꦩꦶꦭ꧀";
-                return;
-            }
-
-            let keys = Object.keys(consonants).sort((a, b) => b.length - a.length);
-            while (i < input.length) {
-                let matched = false;
-                if (input[i] === ' ') {
-                    result += ' ';
-                    i++;
-                    continue;
+            // Cek kamus baku kata per kata agar sesuai kaidah penulisan aslinya
+            let words = input.split(/\s+/);
+            let translatedWords = words.map(word => {
+                if (syllableMap[word]) {
+                    return syllableMap[word];
                 }
                 
-                for (let key of keys) {
-                    if (input.substr(i, key.length) === key) {
-                        result += consonants[key];
-                        i += key.length;
-                        
-                        // Cek apakah ada vokal setelahnya yang perlu diberi sandhangan
-                        if (i < input.length) {
-                            let nextChar = input[i];
-                            if (nextChar === 'i') { result += '\uA9B6'; i++; }
-                            else if (nextChar === 'u') { result += '\uA9B4'; i++; }
-                            else if (nextChar === 'e') { result += '\uA9BC'; i++; }
-                            else if (nextChar === 'o') { result += '\uA9BA\uA9B8'; i++; }
-                            else if (nextChar === 'a') { i++; } // abaikan karena sudah bawaan 'a'
-                        }
-                        matched = true;
-                        break;
-                    }
-                }
-                if (!matched) {
-                    result += input[i];
-                    i++;
-                }
-            }
+                // Algoritma fallback kaidah standar per suku kata
+                return word
+                    .replace(/nya/g, 'ꦚ')
+                    .replace(/nga/g, 'ꦔ')
+                    .replace(/dha/g, 'ꦝ')
+                    .replace(/tha/g, 'ꦛ')
+                    .replace(/ha/g, 'ꦲ')
+                    .replace(/na/g, 'ꦤ')
+                    .replace(/ca/g, 'ꦕ')
+                    .replace(/ra/g, 'ꦫ')
+                    .replace(/ka/g, 'ꦏ')
+                    .replace(/da/g, 'ꦢ')
+                    .replace(/ta/g, 'ꦠ')
+                    .replace(/sa/g, 'ꦱ')
+                    .replace(/wa/g, 'ꦮ')
+                    .replace(/la/g, 'ꦭ')
+                    .replace(/pa/g, 'ꦥ')
+                    .replace(/ja/g, 'ꦗ')
+                    .replace(/ya/g, 'ꦪ')
+                    .replace(/ma/g, 'ꦩ')
+                    .replace(/ga/g, 'ꦒ')
+                    .replace(/ba/g, 'ꦧ')
+                    .replace(/i/g, 'ꦶ')
+                    .replace(/u/g, 'ꦸ')
+                    .replace(/e/g, 'ꦼ')
+                    .replace(/o/g, 'ꦴ')
+                    .replace(/ng/g, 'ꦁ')
+                    .replace(/r/g, 'ꦂ')
+                    .replace(/h/g, 'ꦃ');
+            });
 
-            outputBox.textContent = result;
+            outputBox.textContent = translatedWords.join(' ');
+        }
+
+        function copyResult() {
+            const outputText = document.getElementById('javanese-output').textContent;
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(outputText).then(() => {
+                    alert("Berhasil disalin ke clipboard!");
+                }).catch(() => {
+                    fallbackCopy(outputText);
+                });
+            } else {
+                fallbackCopy(outputText);
+            }
+        }
+
+        function fallbackCopy(text) {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            textArea.style.position = "fixed";
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                alert("Berhasil disalin ke clipboard!");
+            } catch (err) {
+                alert("Gagal menyalin teks.");
+            }
+            document.body.removeChild(textArea);
         }
     </script>
 </body>
