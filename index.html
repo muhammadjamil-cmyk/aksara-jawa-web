@@ -5,15 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Aksara Jawa Studio</title>
     <!-- Memuat Font Unicode Noto Sans Javanese & Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Javanese&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Javanese&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-color: #f8fafc;
             --card-bg: #ffffff;
-            --text-main: #1e293b;
-            --primary: #0284c7;
-            --primary-hover: #0369a1;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --primary: #854d0e; /* Nuansa Klasik / Kayu / Keraton */
+            --primary-light: #fef9c3;
+            --accent: #ca8a04;
             --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
         }
 
         * {
@@ -22,59 +25,70 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-main);
             margin: 0;
-            padding: 16px;
+            padding: 20px 16px;
             display: flex;
             justify-content: center;
         }
 
         .container {
             width: 100%;
-            max-width: 600px;
+            max-width: 500px;
         }
 
+        /* Header Elegan */
         header {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, #713f12, #a16207);
+            color: white;
+            padding: 24px 16px;
+            border-radius: 16px;
+            box-shadow: 0 10px 15px -3px rgba(161, 98, 7, 0.2);
         }
 
         header h1 {
-            font-size: 1.4rem;
-            margin-bottom: 6px;
-            font-family: 'Noto Sans Javanese', 'Inter', sans-serif;
+            font-size: 1.5rem;
+            margin: 0 0 8px 0;
+            font-family: 'Noto Sans Javanese', sans-serif;
+            letter-spacing: 1px;
         }
 
         header p {
-            color: #64748b;
             font-size: 0.85rem;
             margin: 0;
+            opacity: 0.9;
         }
 
+        /* Navigasi Tab Modern */
         .tabs {
             display: flex;
-            gap: 8px;
-            margin-bottom: 16px;
+            background: #e2e8f0;
+            padding: 4px;
+            border-radius: 12px;
+            margin-bottom: 20px;
         }
 
         .tab-btn {
             flex: 1;
-            padding: 12px;
-            border: 1px solid var(--border);
-            background: var(--card-bg);
+            padding: 10px;
+            border: none;
+            background: transparent;
             cursor: pointer;
-            font-weight: 500;
-            font-size: 0.9rem;
-            border-radius: 10px;
-            transition: all 0.2s;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            border-radius: 9px;
+            transition: all 0.3s ease;
         }
 
         .tab-btn.active {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
+            background: var(--card-bg);
+            color: var(--primary);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
 
         .tab-content {
@@ -83,151 +97,199 @@
 
         .tab-content.active {
             display: block;
+            animation: fadeIn 0.3s ease-in-out;
         }
 
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Kartu Konten */
         .card {
             background: var(--card-bg);
             border: 1px solid var(--border);
-            padding: 16px;
-            border-radius: 12px;
-            margin-bottom: 14px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+            padding: 20px;
+            border-radius: 16px;
+            margin-bottom: 16px;
+            box-shadow: var(--shadow);
         }
 
         label {
             display: block;
-            font-weight: 500;
+            font-weight: 600;
             margin-bottom: 8px;
             font-size: 0.85rem;
-            color: #475569;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         textarea {
             width: 100%;
-            height: 90px;
-            padding: 12px;
+            height: 100px;
+            padding: 14px;
             border: 1px solid var(--border);
-            border-radius: 8px;
+            border-radius: 12px;
             font-family: inherit;
             font-size: 1rem;
             resize: none;
-            background: #ffffff;
+            background: #f8fafc;
+            color: var(--text-main);
+            transition: all 0.2s;
         }
 
         textarea:focus {
             outline: none;
-            border-color: var(--primary);
+            border-color: var(--accent);
+            background: #ffffff;
+            box-shadow: 0 0 0 3px rgba(202, 138, 4, 0.1);
         }
 
+        /* Kotak Hasil */
         .output-box {
             font-family: 'Noto Sans Javanese', sans-serif;
-            font-size: 1.8rem;
-            padding: 14px;
-            background: #f1f5f9;
-            border-radius: 8px;
-            min-height: 60px;
+            font-size: 2rem;
+            padding: 16px;
+            background: var(--primary-light);
+            border: 1px solid #fde047;
+            border-radius: 12px;
+            min-height: 70px;
             display: flex;
             align-items: center;
             word-break: break-all;
-            margin-bottom: 12px;
-            color: #0f172a;
+            margin-bottom: 14px;
+            color: #713f12;
         }
 
-        .copy-btn {
-            background: #e2e8f0;
+        /* Tombol Aksi */
+        .action-btn {
+            background: #713f12;
+            color: white;
             border: none;
             width: 100%;
-            padding: 10px;
-            border-radius: 8px;
+            padding: 12px;
+            border-radius: 12px;
             cursor: pointer;
             font-weight: 600;
             font-size: 0.9rem;
-            color: #334155;
             transition: background 0.2s;
+            box-shadow: 0 4px 6px -1px rgba(113, 63, 18, 0.2);
         }
 
-        .copy-btn:active {
-            background: #cbd5e1;
+        .action-btn:active {
+            transform: scale(0.98);
+            background: #582f0e;
         }
 
+        /* Kamus Grid Estetik */
         .grid-carakan {
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 8px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
             text-align: center;
         }
 
         .glyph-card {
             background: #f8fafc;
             border: 1px solid var(--border);
-            padding: 10px 4px;
-            border-radius: 8px;
+            padding: 12px 4px;
+            border-radius: 12px;
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .glyph-card:hover {
+            background: var(--primary-light);
+            border-color: #fde047;
         }
 
         .glyph-card span {
             font-family: 'Noto Sans Javanese', sans-serif;
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             display: block;
-            margin-bottom: 2px;
+            margin-bottom: 4px;
+            color: var(--primary);
         }
 
         .glyph-card small {
-            color: #64748b;
+            color: var(--text-muted);
             font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        /* Footer Info */
+        footer {
+            text-align: center;
+            margin-top: 24px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <!-- Header -->
+        <!-- Header Gaya Baru -->
         <header>
-            <h1>ꦄꦏ꧀ꦱꦫꦗꦮ Aksara Jawa Studio</h1>
-            <p>Konverter & Kamus Interaktif</p>
+            <h1>ꦄꦏ꧀ꦱꦫꦗꦮ Studio</h1>
+            <p>Eksplorasi Konverter & Kamus Aksara Nusantara</p>
         </header>
 
         <!-- Navigasi Tab -->
         <div class="tabs">
-            <button class="tab-btn active" onclick="switchTab('converter', this)">Konverter</button>
-            <button class="tab-btn" onclick="switchTab('dictionary', this)">Kamus Dasar</button>
+            <button class="tab-btn active" onclick="switchTab('converter', this)">Konverter Teks</button>
+            <button class="tab-btn" onclick="switchTab('dictionary', this)">Kamus 20 Carakan</button>
         </div>
 
         <!-- Bagian Konverter -->
         <section id="converter-section" class="tab-content active">
             <div class="card">
-                <label for="latin-input">Ketik Teks Latin:</label>
-                <textarea id="latin-input" placeholder="Contoh: h n c r k d t s w l..." oninput="handleTransliterate()"></textarea>
+                <label for="latin-input">Tulis Teks Latin</label>
+                <textarea id="latin-input" placeholder="Contoh: ha na ca ra ka..." oninput="handleTransliterate()"></textarea>
             </div>
 
             <div class="card">
-                <label>Hasil Aksara Jawa:</label>
+                <label>Hasil Aksara Jawa</label>
                 <div id="javanese-output" class="output-box">ꦲꦭꦺꦴ</div>
-                <button class="copy-btn" onclick="copyResult()">Salin Hasil Teks</button>
+                <button class="action-btn" onclick="copyResult()">Salin Hasil Aksara</button>
             </div>
         </section>
 
         <!-- Bagian Kamus / Referensi -->
         <section id="dictionary-section" class="tab-content">
             <div class="card">
-                <label style="margin-bottom: 12px; font-weight: 600;">Carakan Dasar (Legena)</label>
+                <label style="margin-bottom: 14px;">Daftar 20 Carakan Dasar</label>
                 <div class="grid-carakan">
                     <div class="glyph-card"><span>ꦲ</span><small>ha</small></div>
                     <div class="glyph-card"><span>ꦤ</span><small>na</small></div>
                     <div class="glyph-card"><span>ꦕ</span><small>ca</small></div>
                     <div class="glyph-card"><span>ꦫ</span><small>ra</small></div>
                     <div class="glyph-card"><span>ꦏ</span><small>ka</small></div>
-                    <div class="glyph-card"><span>ꦝ</span><small>da</small></div>
+                    <div class="glyph-card"><span>ꦢ</span><small>da</small></div>
                     <div class="glyph-card"><span>ꦠ</span><small>ta</small></div>
                     <div class="glyph-card"><span>ꦱ</span><small>sa</small></div>
                     <div class="glyph-card"><span>ꦮ</span><small>wa</small></div>
                     <div class="glyph-card"><span>ꦭ</span><small>la</small></div>
+                    <div class="glyph-card"><span>ꦥ</span><small>pa</small></div>
+                    <div class="glyph-card"><span>ꦝ</span><small>dha</small></div>
+                    <div class="glyph-card"><span>ꦗ</span><small>ja</small></div>
+                    <div class="glyph-card"><span>ꦪ</span><small>ya</small></div>
+                    <div class="glyph-card"><span>ꦚ</span><small>nya</small></div>
+                    <div class="glyph-card"><span>ꦩ</span><small>ma</small></div>
+                    <div class="glyph-card"><span>ꦒ</span><small>ga</small></div>
+                    <div class="glyph-card"><span>ꦧ</span><small>ba</small></div>
+                    <div class="glyph-card"><span>ꦛ</span><small>tha</small></div>
+                    <div class="glyph-card"><span>ꦔ</span><small>nga</small></div>
                 </div>
             </div>
         </section>
+
+        <footer>
+            Dibuat khusus dengan estetika Nusantara &bull; 2026
+        </footer>
     </div>
 
     <script>
-        // Fungsi Tab
         function switchTab(tabName, element) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
@@ -240,41 +302,55 @@
             }
         }
 
-        // Fungsi Transliterasi Dasar
+        const carakanMap = {
+            'ha': 'ꦲ', 'na': 'ꦤ', 'ca': 'ꦕ', 'ra': 'ꦫ', 'ka': 'ꦏ',
+            'da': 'ꦢ', 'ta': 'ꦠ', 'sa': 'ꦱ', 'wa': 'ꦮ', 'la': 'ꦭ',
+            'pa': 'ꦥ', 'dha': 'ꦝ', 'ja': 'ꦗ', 'ya': 'ꦪ', 'nya': 'ꦚ',
+            'ma': 'ꦩ', 'ga': 'ꦒ', 'ba': 'ꦧ', 'tha': 'ꦛ', 'nga': 'ꦔ',
+            'h': 'ꦲ', 'n': 'ꦤ', 'c': 'ꦕ', 'r': 'ꦫ', 'k': 'ꦏ',
+            'd': 'ꦢ', 't': 'ꦠ', 's': 'ꦱ', 'w': 'ꦮ', 'l': 'ꦭ',
+            'p': 'ꦥ', 'j': 'ꦗ', 'y': 'ꦪ', 'm': 'ꦩ', 'g': 'ꦒ',
+            'b': 'ꦧ'
+        };
+
         function handleTransliterate() {
-            const input = document.getElementById('latin-input').value.toLowerCase();
+            let input = document.getElementById('latin-input').value.toLowerCase().trim();
             const outputBox = document.getElementById('javanese-output');
 
-            if (!input.trim()) {
+            if (!input) {
                 outputBox.textContent = "ꦲꦭꦺꦴ";
                 return;
             }
 
-            let translated = "";
-            for (let i = 0; i < input.length; i++) {
-                let char = input[i];
-                if (char === 'h') translated += 'ꦲ';
-                else if (char === 'n') translated += 'ꦤ';
-                else if (char === 'c') translated += 'ꦕ';
-                else if (char === 'r') translated += 'ꦫ';
-                else if (char === 'k') translated += 'ꦏ';
-                else if (char === 'd') translated += 'ꦝ';
-                else if (char === 't') translated += 'ꦠ';
-                else if (char === 's') translated += 'ꦱ';
-                else if (char === 'w') translated += 'ꦮ';
-                else if (char === 'l') translated += 'ꦭ';
-                else translated += char; 
+            let keys = Object.keys(carakanMap).sort((a, b) => b.length - a.length);
+            let result = "";
+            let i = 0;
+
+            while (i < input.length) {
+                let match = "";
+                for (let key of keys) {
+                    if (input.substr(i, key.length) === key) {
+                        match = carakanMap[key];
+                        i += key.length;
+                        break;
+                    }
+                }
+                if (match) {
+                    result += match;
+                } else {
+                    result += input[i];
+                    i++;
+                }
             }
 
-            outputBox.textContent = translated;
+            outputBox.textContent = result;
         }
 
-        // Fungsi Salin (Kompatibel untuk iOS Safari)
         function copyResult() {
             const outputText = document.getElementById('javanese-output').textContent;
             if (navigator.clipboard && navigator.clipboard.writeText) {
                 navigator.clipboard.writeText(outputText).then(() => {
-                    alert("Berhasil disalin!");
+                    alert("Berhasil disalin ke clipboard!");
                 }).catch(() => {
                     fallbackCopy(outputText);
                 });
@@ -292,7 +368,7 @@
             textArea.select();
             try {
                 document.execCommand('copy');
-                alert("Berhasil disalin!");
+                alert("Berhasil disalin ke clipboard!");
             } catch (err) {
                 alert("Gagal menyalin teks.");
             }
