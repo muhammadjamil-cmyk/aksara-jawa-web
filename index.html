@@ -149,6 +149,7 @@
             word-break: break-all;
             margin-bottom: 14px;
             color: #78350f;
+            line-height: 1.4;
         }
 
         .action-btn {
@@ -237,12 +238,12 @@
         <section id="converter-section" class="tab-content active">
             <div class="card">
                 <label for="latin-input">Tulis Teks Latin</label>
-                <textarea id="latin-input" placeholder="Contoh: garungwiroyo, jamil, saya..." oninput="handleTransliterate()"></textarea>
+                <textarea id="latin-input" placeholder="Contoh: saya raja para dewa agung..." oninput="handleTransliterate()"></textarea>
             </div>
 
             <div class="card">
                 <label>Hasil Aksara Jawa</label>
-                <div id="javanese-output" class="output-box">ꦒꦫꦸꦁꦮꦶꦫꦺꦴꦪꦺꦴ</div>
+                <div id="javanese-output" class="output-box">ꦱꦪ​ꦫꦗ​ꦥꦫ​ꦢꦺꦮ​ꦲꦒꦸꦁ</div>
                 <button class="action-btn" onclick="copyResult()">Salin Hasil Aksara</button>
             </div>
         </section>
@@ -276,7 +277,7 @@
             </div>
         </section>
 
-        <!-- Bagian Sandhangan & Kaidah -->
+        <!-- Bagian Sandhangan -->
         <section id="rules-section" class="tab-content">
             <div class="card">
                 <div class="section-title">Sandhangan Swara (Vokal)</div>
@@ -316,16 +317,18 @@
             }
         }
 
-        // Kamus transliterasi berbasis aturan blok suku kata baku
-        const syllableMap = {
-            "garungwiroyo": "ꦒꦫꦸꦁꦮꦶꦫꦺꦴꦪꦺꦴ",
-            "jamil": "ꦗꦩꦶꦭ꧀",
+        // Kamus padanan kata baku Aksara Jawa yang benar sesuai Unicode
+        const dictionary = {
             "saya": "ꦱꦪ",
+            "raja": "ꦫꦗ",
+            "para": "ꦥꦫ",
+            "dewa": "ꦢꦺꦮ",
+            "agung": "ꦲꦒꦸꦁ",
+            "jamil": "ꦗꦩ궃ꦭ꧀",
+            "garungwiroyo": "ꦒꦫꦸꦁꦮꦶꦫꦺꦴꦪꦺꦴ",
             "aksara": "ꦲꦏ꧀ꦱꦫ",
             "jawa": "ꦗꦮ",
-            "nusantara": "ꦤꦸꦱꦤ꧀ꦠꦫ",
-            "surakarta": "ꦯꦸꦫꦏꦂꦠ",
-            "yogyakarta": "ꦪꦺꦴꦒꦾꦏꦂꦠ"
+            "nusantara": "ꦤꦸꦱꦤ꧀ꦠꦫ"
         };
 
         function handleTransliterate() {
@@ -333,19 +336,21 @@
             const outputBox = document.getElementById('javanese-output');
 
             if (!input) {
-                outputBox.textContent = "ꦒꦫꦸꦁꦮꦶꦫꦺꦴꦪꦺꦴ";
+                outputBox.textContent = "ꦱꦪ​ꦫꦗ​ꦥꦫ​ꦢꦺꦮ​ꦲꦒꦸꦁ";
                 return;
             }
 
-            // Cek kamus baku kata per kata agar sesuai kaidah penulisan aslinya
+            // Pisahkan kalimat berdasarkan spasi menjadi kata-kata terpisah
             let words = input.split(/\s+/);
             let translatedWords = words.map(word => {
-                if (syllableMap[word]) {
-                    return syllableMap[word];
+                // Bersihkan tanda baca di sekitar kata jika ada
+                let cleanWord = word.replace(/[^a-z]/g, '');
+                if (dictionary[cleanWord]) {
+                    return dictionary[cleanWord];
                 }
                 
-                // Algoritma fallback kaidah standar per suku kata
-                return word
+                // Fallback jika kata belum ada di kamus, gunakan bentuk fonetik konsonan dasar yang bersih
+                return cleanWord
                     .replace(/nya/g, 'ꦚ')
                     .replace(/nga/g, 'ꦔ')
                     .replace(/dha/g, 'ꦝ')
@@ -371,8 +376,7 @@
                     .replace(/e/g, 'ꦼ')
                     .replace(/o/g, 'ꦴ')
                     .replace(/ng/g, 'ꦁ')
-                    .replace(/r/g, 'ꦂ')
-                    .replace(/h/g, 'ꦃ');
+                    .replace(/r/g, 'ꦂ');
             });
 
             outputBox.textContent = translatedWords.join(' ');
