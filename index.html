@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Aksara Jawa Studio Baku</title>
+    <title>Aksara Jawa Studio Final</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Javanese&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -238,12 +238,12 @@
         <section id="converter-section" class="tab-content active">
             <div class="card">
                 <label for="latin-input">Tulis Teks Latin</label>
-                <textarea id="latin-input" placeholder="Contoh: saya raja para dewa agung..." oninput="handleTransliterate()"></textarea>
+                <textarea id="latin-input" placeholder="Ketik teks di sini..." oninput="handleTransliterate()">saya raja para dewa agung</textarea>
             </div>
 
             <div class="card">
                 <label>Hasil Aksara Jawa</label>
-                <div id="javanese-output" class="output-box">ꦱꦪ​ꦫꦗ​ꦥꦫ​ꦢꦺꦮ​ꦲꦒꦸꦁ</div>
+                <div id="javanese-output" class="output-box">ꦱꦪ​ꦫꦗ​ꦥꦫ​ꦢꦺ​ꦲꦒꦸꦁ</div>
                 <button class="action-btn" onclick="copyResult()">Salin Hasil Aksara</button>
             </div>
         </section>
@@ -299,7 +299,7 @@
         </section>
 
         <footer>
-            Aksara Jawa Studio &bull; Standard Baku 2026
+            Aksara Jawa Studio &bull; Final Edition 2026
         </footer>
     </div>
 
@@ -317,14 +317,14 @@
             }
         }
 
-        // Kamus padanan kata baku Aksara Jawa yang benar sesuai Unicode
+        // Kamus padanan kata baku Aksara Jawa Unicode
         const dictionary = {
             "saya": "ꦱꦪ",
             "raja": "ꦫꦗ",
             "para": "ꦥꦫ",
             "dewa": "ꦢꦺꦮ",
             "agung": "ꦲꦒꦸꦁ",
-            "jamil": "ꦗꦩ궃ꦭ꧀",
+            "jamil": "ꦗꦩꦶꦭ꧀",
             "garungwiroyo": "ꦒꦫꦸꦁꦮꦶꦫꦺꦴꦪꦺꦴ",
             "aksara": "ꦲꦏ꧀ꦱꦫ",
             "jawa": "ꦗꦮ",
@@ -340,43 +340,13 @@
                 return;
             }
 
-            // Pisahkan kalimat berdasarkan spasi menjadi kata-kata terpisah
             let words = input.split(/\s+/);
             let translatedWords = words.map(word => {
-                // Bersihkan tanda baca di sekitar kata jika ada
                 let cleanWord = word.replace(/[^a-z]/g, '');
                 if (dictionary[cleanWord]) {
                     return dictionary[cleanWord];
                 }
-                
-                // Fallback jika kata belum ada di kamus, gunakan bentuk fonetik konsonan dasar yang bersih
-                return cleanWord
-                    .replace(/nya/g, 'ꦚ')
-                    .replace(/nga/g, 'ꦔ')
-                    .replace(/dha/g, 'ꦝ')
-                    .replace(/tha/g, 'ꦛ')
-                    .replace(/ha/g, 'ꦲ')
-                    .replace(/na/g, 'ꦤ')
-                    .replace(/ca/g, 'ꦕ')
-                    .replace(/ra/g, 'ꦫ')
-                    .replace(/ka/g, 'ꦏ')
-                    .replace(/da/g, 'ꦢ')
-                    .replace(/ta/g, 'ꦠ')
-                    .replace(/sa/g, 'ꦱ')
-                    .replace(/wa/g, 'ꦮ')
-                    .replace(/la/g, 'ꦭ')
-                    .replace(/pa/g, 'ꦥ')
-                    .replace(/ja/g, 'ꦗ')
-                    .replace(/ya/g, 'ꦪ')
-                    .replace(/ma/g, 'ꦩ')
-                    .replace(/ga/g, 'ꦒ')
-                    .replace(/ba/g, 'ꦧ')
-                    .replace(/i/g, 'ꦶ')
-                    .replace(/u/g, 'ꦸ')
-                    .replace(/e/g, 'ꦼ')
-                    .replace(/o/g, 'ꦴ')
-                    .replace(/ng/g, 'ꦁ')
-                    .replace(/r/g, 'ꦂ');
+                return cleanWord;
             });
 
             outputBox.textContent = translatedWords.join(' ');
@@ -410,6 +380,11 @@
             }
             document.body.removeChild(textArea);
         }
+
+        // Inisialisasi awal saat halaman dimuat
+        window.onload = function() {
+            handleTransliterate();
+        };
     </script>
 </body>
 </html>
